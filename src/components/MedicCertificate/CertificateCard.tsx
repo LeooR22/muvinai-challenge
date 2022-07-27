@@ -7,8 +7,11 @@ import {
   Box,
   Button,
 } from "@mui/material";
+import { useContext } from "react";
+import { UserContext } from "../../context/user";
 
 export const CertificateCard = () => {
+  const { isMedicCertified, toggleMedicCertified } = useContext(UserContext);
   return (
     <Grid item xs={12} sx={{ mt: 1 }}>
       <Card variant="outlined">
@@ -21,7 +24,11 @@ export const CertificateCard = () => {
             </Grid>
             <Grid item xs={12} sm={6} display="flex" justifyContent="end">
               <Typography sx={{ mt: 0.6, mr: 1 }}>{"Estado:"}</Typography>
-              <Chip label="Aprobado" color="success" />
+              {isMedicCertified ? (
+                <Chip label="Aprobado" color="success" />
+              ) : (
+                <Chip label="Desaprobado" color="error" />
+              )}
             </Grid>
             <Grid item xs={12} sm={6} display="flex" justifyContent="start">
               <Typography variant="overline" sx={{ mt: 0.6 }}>
@@ -33,7 +40,14 @@ export const CertificateCard = () => {
             <Grid container spacing={2}>
               <Grid item xs={6} sm={3}></Grid>
               <Grid item xs={12} sm={3}>
-                <Button variant="outlined" size="large" fullWidth color="error">
+                <Button
+                  variant="outlined"
+                  size="large"
+                  fullWidth
+                  color="error"
+                  onClick={toggleMedicCertified}
+                  disabled={!isMedicCertified}
+                >
                   Reprobar
                 </Button>
               </Grid>
@@ -44,6 +58,8 @@ export const CertificateCard = () => {
                   size="large"
                   fullWidth
                   color="success"
+                  onClick={toggleMedicCertified}
+                  disabled={isMedicCertified}
                 >
                   Aprobar
                 </Button>{" "}
