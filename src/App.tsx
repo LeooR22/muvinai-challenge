@@ -1,16 +1,11 @@
-import { Container } from "@mui/material";
-import React from "react";
-import { Buttons } from "./components/Buttons";
-import { Form } from "./components/Form";
-import { InfoComponent } from "./components/InfoComponent";
+import { UserProvider } from "./context/user";
+import { UserPage } from "./pages/UserPage";
 
 const App = () => {
   return (
-    <Container>
-      <Form />
-      <Buttons />
-      <InfoComponent />
-    </Container>
+    <UserProvider>
+      <UserPage />
+    </UserProvider>
   );
 };
 
