@@ -10,14 +10,14 @@ export interface UserState {
 
 const USER_INITIAL_STATE: UserState = {
   userForm: {
-    alta: "",
-    bornDate: "",
-    dni: "",
-    email: "",
-    firstName: "",
-    lastName: "",
-    plan: "",
-    telephone: "",
+    alta: "Alta",
+    bornDate: "22/02/2000",
+    dni: "42.472.582",
+    email: "leonelrivas.rl@gmail.com",
+    firstName: "Leonel",
+    lastName: "Rivas",
+    plan: "Full",
+    telephone: "1151765055",
   },
   isMedicCertified: false,
 };
