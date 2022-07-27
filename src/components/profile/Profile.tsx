@@ -1,7 +1,5 @@
 import {
   Avatar,
-  Box,
-  Button,
   Card,
   CardContent,
   Chip,
@@ -9,8 +7,16 @@ import {
   Typography,
 } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
+import { ItemTypo } from "./ItemTypo";
+import { useContext } from "react";
+import { UserContext } from "../../context/user/UserContext";
 
 export const Profile = () => {
+  const { userForm, isMedicCertified } = useContext(UserContext);
+
+  const { firstName, lastName, plan, dni, telephone, alta, email, bornDate } =
+    userForm;
+
   return (
     <Grid container sx={{ mt: 4 }} spacing={2}>
       <Grid item xs={12} sx={{ mt: 1 }}>
@@ -27,50 +33,32 @@ export const Profile = () => {
                   OP
                 </Avatar>
               </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography sx={{ mt: 0.6 }}>{`Nombre: Jhon`}</Typography>{" "}
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography sx={{ mt: 0.6 }}>{`Apellido: Doe`}</Typography>{" "}
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography sx={{ mt: 0.6 }}>{`Plan activo: FULL`}</Typography>{" "}
-              </Grid>
+
+              <ItemTypo label="Nombre" value={firstName} />
+              <ItemTypo label="Apellido" value={lastName} />
+              <ItemTypo label="Plan Activo" value={plan} />
+
               <Grid item xs={12} sm={3} display="flex">
                 <Typography sx={{ mt: 0.6, mr: 1 }}>{"Activo:"}</Typography>
                 <Chip label="Alta" color="success" />
               </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography sx={{ mt: 0.6 }}>{`DNI: 12.123.123`}</Typography>{" "}
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography
-                  sx={{ mt: 0.6 }}
-                >{`Telefono: 11-1234-1234`}</Typography>{" "}
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography
-                  sx={{ mt: 0.6 }}
-                >{`Email: test@test.com`}</Typography>{" "}
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography
-                  sx={{ mt: 0.6 }}
-                >{`Nacimiento: 22/02/2000`}</Typography>{" "}
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography
-                  sx={{ mt: 0.6 }}
-                >{`Proximo pago: 27/08/22`}</Typography>{" "}
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <Typography sx={{ mt: 0.6 }}>{`ID Socio: 398`}</Typography>{" "}
-              </Grid>
+
+              <ItemTypo label="DNI" value={dni} />
+              <ItemTypo label="Telefono" value={telephone} />
+              <ItemTypo label="Email" value={email} />
+              <ItemTypo label="Nacimiento" value={bornDate} />
+              <ItemTypo label="Proximo pago" value={"27/08/22"} />
+              <ItemTypo label="ID Socio" value={"389"} />
+
               <Grid item xs={12} sm={3} display="flex">
                 <Typography sx={{ mt: 0.6, mr: 1 }}>
                   {"Cert. Medico:"}
                 </Typography>
-                <Chip label="Aprobado" color="success" />
+                {isMedicCertified ? (
+                  <Chip label="Aprobado" color="success" />
+                ) : (
+                  <Chip label="Desaprobado" color="error" />
+                )}
               </Grid>
             </Grid>
           </CardContent>
