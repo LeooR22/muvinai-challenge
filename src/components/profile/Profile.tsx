@@ -30,7 +30,7 @@ export const Profile = () => {
                 <Avatar
                   sx={{ bgcolor: deepPurple[500], width: 60, height: 60 }}
                 >
-                  OP
+                  {firstName[0] + lastName[0]}
                 </Avatar>
               </Grid>
 
